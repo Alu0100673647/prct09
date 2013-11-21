@@ -104,7 +104,9 @@ class Fraccion
 	    (@numerador.to_f / @denominador) >= (frac.numerador.to_f / frac.denominador)
 	end
 
-	
+	#def coerce(something)
+	#	[self, Fraccion.new(something)]
+    #end
 
 end
 	

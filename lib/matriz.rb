@@ -3,132 +3,148 @@
 # Pedro Javier Núñez Rodríguez
 # Constanza Leon Baritussio
 # 
+require 'fraccion'
 
 class Matriz 
  
    include Comparable 		#Modulo comparable
-   attr_accessor :matrix, :n, :m
-   @matrix
-   @n   # filas
-   @m   # columnas
-	
-   def initialize(n,m) 		#Constructor de la clase que inicializa la matriz con los valores que se le pasan por parametros
-      raise ArgumentError, 'Tamaño de matriz no valido' unless n.is_a? Integer and m.is_a? Integer and n > 0 and m > 0
-	  @n = n 
-	  @m = m
-      @matrix=[]
-      for i in (0...@n) 
-         @matrix[i]=[]
-         for j in (0...@m)
-            @matrix[i][j] = 0
-         end
-      end
+   
+   attr_accessor :filas, :columnas, :matriz
+   
+   def initialize(m)
+       @filas = m.size
+       @columnas = m[0].size
+       @matriz = m;
    end
  
-   def set(i, j, valor)		#Método para aaceder a los valores i , j y valor de la matriz
-      raise ArgumentError, 'Indice no valido' unless i.is_a? Integer and i >= 0 and i < @n
-      raise ArgumentError, 'Indice no valido' unless j.is_a? Integer and j >= 0 and j < @m
-      raise ArgumentError, 'Valor no numerico' unless valor.is_a? Integer 
-      @matrix[i][j] = valor
+   def [](fila, columna)
+		@matriz[fila][columna]
    end
- 
-   def get(i, j)
-      return @matrix[i][j]
+
+   def []=(fila, columna, valor)
+       @matriz[fila][columna] = valor
    end
      
    def to_s			#Método encargado de mostrar por consola la matriz de forma matriz[i][j]		
-	  s = ""
-	  s += "{"
-      for i in (0...n)
-         s += "{"
-         for j in (0...m)
-            if j == 0
-               s += "#{matrix[i][j]}"
-            else
-               s += ","
-               s += "#{matrix[i][j]}"
-            end
-         end
-         s += "}"
-      end
-      s += "}"
-      s
+	   s = ""
+	   s += "{"
+       for i in (0...filas)
+           s += "{"
+           for j in (0...columnas)
+               if j == 0
+                   s += "#{matriz[i][j]}"
+               else
+                   s += ","
+                   s += "#{matriz[i][j]}"
+               end
+           end
+           s += "}"
+       end
+       s += "}"
+       s
    end
   
    def to_f			# Método encargado de mostrar por  la consola la matriz en formato flotante
-      s = ""
-	  s = "{"
-      for i in (0...n)
-         s += "{"
-         for j in (0...m)
-            if j == 0
-               s += "#{matrix[i][j].to_f}"
-            else
-               s += ","
-               s += "#{matrix[i][j].to_f}"
-            end
-         end
-         s += "}"
-      end
-      s += "}"
-      s
+       s = ""
+	   s = "{"
+       for i in (0...filas)
+           s += "{"
+           for j in (0...columnas)
+               if j == 0
+                   s += "#{matriz[i][j].to_f}"
+               else
+                   s += ","
+                   s += "#{matriz[i][j].to_f}"
+               end
+           end
+           s += "}"
+       end
+       s += "}"
+       s
    end
    
    def -@			# Sobrecarga del operador - para calcular el opuesto de una matriz
-	  mat = Matriz.new(n,m)
-      for i in (0...n) 
-         for j in (0...m)
-            if matrix[i][j] != 0
-               mat.matrix[i][j] = (matrix[i][j] * -1)
-            end
-         end
-      end
-      mat
+	   mat = Matriz.new(self.matriz)
+       for i in (0...filas) 
+           for j in (0...columnas)
+               if matriz[i][j] != 0
+                  mat.matriz[i][j] = (matriz[i][j] * -1)
+               end
+           end
+       end
+       mat
    end
    
    def * num			#Método que multiplica un número por una matriz
-      mat = Matriz.new(n,m)
-      for i in (0...n)
-         for j in (0...m)
-            mat.set(i,j,matrix[i][j] * num)
-         end
-      end
-      mat
+       mat = Matriz.new(self.matriz)
+       for i in (0...filas)
+           for j in (0...columnas)
+               mat.matriz[i][j] = (matriz[i][j] * num)
+           end
+       end
+       mat
    end
    
    def + matAux			#Método para hacer la suma de de matrices
-      mat = Matriz.new(n,m)
-      for i in (0...n)
-         for j in (0...m)
-            mat.set(i,j,matrix[i][j] + matAux.matrix[i][j])
-         end
+      mat = Matriz.new(matAux.matriz)
+      for i in (0...filas)
+          for j in (0...columnas)
+              mat.matriz[i][j] = (matriz[i][j] + matAux.matriz[i][j])
+          end
       end
       mat
    end
    
    def - matAux			#Método para hacer la resta de  matrices
-      mat = Matriz.new(n,m)
-      for i in (0...n)
-         for j in (0...m)
-            mat.set(i,j,matrix[i][j] - matAux.matrix[i][j])
-         end
+      mat = Matriz.new(matAux.matriz)
+      for i in (0...filas)
+          for j in (0...columnas)
+              mat.matriz[i][j] = (matriz[i][j] - matAux.matriz[i][j])
+          end
       end
       mat
    end
    
   def * matAux			#Método para hacer la multiplicacion de matrices
-      mat = Matriz.new(n,m)	
-      for k in 0...n
-	    for i in (0...n)
-	       contador = 0
-               for j in (0...m)
-		  contador = contador +(self.get(i,j) * matAux.get(i,j))
-		end
-            end
-         mat.set(i,j, contador)
-     end
-     mat
+      prod = Array.new(matriz.size - 1,0)
+      for i in 0...matriz[0].size 
+          prod[i] = Array.new(matAux.matriz.size,0)
+          for j in 0...matAux.matriz.size
+              for pos in 0...matriz.size
+                  prod[i][j] = prod[i][j] + (matriz[i][pos] * matAux.matriz[pos][j])
+              end
+          end
+      end
+     Matriz.new(prod)
  end
+ 
+ def max
+     maximo = 0.to_f
+     for i in 0...matriz.size
+         for j in 0...matriz[i].size
+             if matriz[i][j].to_f > maximo
+                 maximo = matriz[i][j].to_f
+             end
+         end
+     end
+     maximo
+ end
+   
+ def min
+     minimo = 1000
+     for i in 0...matriz.size
+         for j in 0...matriz[i].size
+             if matriz[i][j].to_f < minimo
+                 minimo = matriz[i][j].to_f
+             end
+         end
+     end
+     minimo
+ end  
+   
+ #def coerce(something)
+ #  [self, Fraccion.new(something)]
+ #end
 
 end
 

@@ -1,5 +1,25 @@
-require "matrizdispersascp/version"
+#require "Matrizdispersascp/version"
+require "matriz"
+require "fraccion"
 
 module Matrizdispersascp
-  # Your code goes here...
+
+    class MatrizDensa < Matriz
+		
+		@matrix
+		@n  #filas
+		@m	#columnas
+		
+		def initialize(m)
+			@filas = m.size
+			@columnas = m[0].size
+			@matriz = m;
+		end
+		
+	end
+	
+	class MatrizDispersa < Matriz
+	
+	end
+		
 end
