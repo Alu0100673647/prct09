@@ -1,8 +1,9 @@
-# Practica 8 Lenguajes y Paradigmas de la programación usando #desarrollo dirigido por pruebas (Test Driven Development - TDD) con 
-# la herramienta Rspec.
+# Etsii ull grado informática
+# Lenguajes y Paradigmas de la programacion
 # Pedro Javier Núñez Rodríguez
 # Constanza Leon Baritussio
-# 
+# Clase matriz
+
 require 'fraccion'
 
 class Matriz 

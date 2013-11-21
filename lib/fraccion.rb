@@ -1,8 +1,8 @@
-# Practica 6 Lenguajes y Paradigmas de la Programación
-# Desarrollo Dirigido por el Comportamiento (Behavior Driven Development - BDD)
-# Autores: Pedro Javier Núñez Rodríguez
-#	   Constanza León Baritussio
-# Fichero que la implementación de la clase Fraccion
+# Etsii ull grado informática
+# Lenguajes y Paradigmas de la programacion
+# Pedro Javier Núñez Rodríguez
+# Constanza Leon Baritussio
+# Clase matriz
 
 require 'mcd'
 
