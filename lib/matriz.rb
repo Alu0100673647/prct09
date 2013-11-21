@@ -4,8 +4,7 @@
 # Constanza Leon Baritussio
 # 
 
-class Matriz << class Vectordisperso
-class Matriz << class Matrixdispersa
+class Matriz 
  
    include Comparable 		#Modulo comparable
    attr_accessor :matrix, :n, :m
