@@ -123,6 +123,16 @@ describe "Pruebas Matrices" do
 		        (@matrizA - @matrizB).to_s.should == "{{0, 0}}{0, -1}}"
 		    end
 		end
+		
+		describe "Metodo para la comprobacion de maximos y minimos" do
+		    it "se calcula el maximo de una matriz" do
+		       @matrizA.max ==	3	      
+		    end
+		    
+		    it "Se calcula el minimo de una matriz" do
+		       @matrizB.min == 0
+		    end
+		end
 	end
 end
 

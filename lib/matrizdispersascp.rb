@@ -134,5 +134,36 @@ module Matrizdispersascp
             end
             MatrizDispersa.new(resta)
         end
+	
+	# Meodo que calcula el maximo de una matriz dispersa
+	def max
+            maximo = 0.to_f
+            for i in 0...matriz.size
+                if matriz[i] != nil
+                    matriz[i].each do |key, value|
+                        if matriz[i][key].to_f > maximo
+                            maximo = matriz[i][key].to_f
+                        end
+                    end
+                end
+            end
+            maximo
+        end
+
+        # Metodo que calcula el minimo de una mariz dispersa
+        def min
+
+         minimo = 0.to_f
+            for i in 0...matriz.size                        
+                if matriz[i] != nil                                        
+                     matriz[i].each do |key, value|
+                        if matriz[i][key].to_f < minimo
+                            minimo = matriz[i][key].to_f
+                        end
+                    end
+                end                                
+            end
+            minimo
+        end
     end
 end

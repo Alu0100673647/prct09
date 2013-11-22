@@ -115,7 +115,18 @@ describe "Pruebas Matrices" do
 		
 		describe "Metodo para la comprobacion de operaciones aritmeticas" do
 		    it "se suman dos matrices dispersas" do
-		       (@matrizA + @matrizA).to_s.should == "{}"
+		       (@matrizA + @matrizA).to_s.should == "{{0, 0}}{0, 6}}"
+		      
+		    end
+		    
+		    it "Se restan dos matrices dispersas" do
+		        (@matrizA - @matrizB).to_s.should == "{{0, 0}}{0, -1}}"
+		    end
+		end
+		
+		describe "Metodo para la comprobacion de maximos y minimos" do
+		    it "se suman dos matrices dispersas" do
+		       (@matrizA + @matrizA).to_s.should == "{{0, 0}}{0, 6}}"
 		      
 		    end
 		    
