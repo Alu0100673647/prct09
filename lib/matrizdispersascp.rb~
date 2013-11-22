@@ -41,7 +41,7 @@ module Matrizdispersascp
         end
     end
 
-    class MatrizDispersa < Matriz
+    class Matrizdispersa < Matriz
 
         attr_reader :matrix
 

@@ -119,9 +119,7 @@ describe "Pruebas Matrices" do
 		      
 		    end
 		    
-		    it "Se restan dos matrices dispersas" do
-		      
-		    end
+		    it "
 		end
 	end
 end
