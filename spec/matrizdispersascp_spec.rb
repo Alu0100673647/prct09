@@ -100,18 +100,6 @@ describe "Pruebas Matrices" do
 		    @matrizB = MatrizDispersa.new(mat2) 
                 end
 		
-		describe "Metodos para la comprobacion de la inicialización y asignacion de valores" do
-   
-		    it "Se inicializa correctamente la matriz " do 
-			@matrizB[1][1].should == 4
-		    end
-
-		    it "Asignamos valores a posiciones de la matriz" do
-			 @matrizA = MatrizDispersa.new 1 => {0 =>1}
-			 @matrizA[1].should ==[nil, {0 => 1}]
-		    end
-		end
-		
 		describe "Metodos para el cambio de formato a string y a flotante" do
 		  
 		    it "La matriz se muestra en formato string" do
@@ -127,12 +115,12 @@ describe "Pruebas Matrices" do
 		
 		describe "Metodo para la comprobacion de operaciones aritmeticas" do
 		    it "se suman dos matrices dispersas" do
-		       (@matrizA + @matrizA).to_s.should == MatrizDispersa.new([nil,{1 => 6}]).to_s
+		       (@matrizA + @matrizA).to_s.should == "{{0, 0}}{0, 6}}"
 		      
 		    end
 		    
 		    it "Se restan dos matrices dispersas" do
-		      
+		        (@matrizA - @matrizB).to_s.should == "{{0, 0}}{0, -1}}"
 		    end
 		end
 	end

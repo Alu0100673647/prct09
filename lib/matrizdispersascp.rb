@@ -107,49 +107,32 @@ module Matrizdispersascp
         end
 
         # Resta de matrices
-        def -(o)
+	def -(o)
            resta = Array.new(matriz.size - 1)
            for i in 0...matriz.size
                 if (matriz[i] != nil or o.matriz[i] != nil)
                     resta[i] = Hash.new()
-           
-                                case true
-
-                                        # Los dos tienen hash
-                                        when (matriz[i] != nil and o.matriz[i] != nil)
-                                
-                                                # cogemos matriz como base para la resta
-                                                resta[i] = matriz[i]
-
-                                                o.matriz[i].each do |key, value|
-                                
-                                                        if resta[i].has_key?(key)
-                                                                resta[i][key] = resta[i][key] - o.matriz[i][key]
-                                                        else
-                                                                resta[i][key] = o.matriz[i][key] * -1
-                                                        end
-
-                                                end
-
-                                        # matriz tiene hash
-                                        when matriz[i] != nil
-                                                resta[i] = matriz[i]
-        
-                                        # o hash
-                                        when o.matriz[i] != nil
-                                                resta[i] = o.matriz[i]
-                                                resta[i].each do |key, value|
-                                                        resta[i][key] = resta[i][key] * -1
-                                                end
-
+                        case true
+                            when (matriz[i] != nil and o.matriz[i] != nil)
+                                resta[i] = matriz[i]
+                                o.matriz[i].each do |key, value|
+                                if resta[i].has_key?(key)
+                                    resta[i][key] = resta[i][key] - o.matriz[i][key]
+                                else
+                                    resta[i][key] = o.matriz[i][key] * -1
                                 end
-                        
+                            end
+                            when matriz[i] != nil
+                                resta[i] = matriz[i]
+                            when o.matriz[i] != nil
+                                resta[i] = o.matriz[i]
+                                resta[i].each do |key, value|
+                                resta[i][key] = resta[i][key] * -1
                         end
-
+                    end
                 end
-                MatrizDispersa.new(resta)
-
-	end
-	
+            end
+            MatrizDispersa.new(resta)
+        end
     end
 end
