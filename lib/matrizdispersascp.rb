@@ -134,6 +134,21 @@ module Matrizdispersascp
             end
             MatrizDispersa.new(resta)
         end
+	# Metodo que calcula la multiplicacion
+
+	def *(o)
+	    if(self.col == o.row)
+     		 matres = self.class.new(self.row,self.col)
+     			 for i in 0...self.row
+      			  for j in 0...o.col
+        		   for k in 0...self.col
+            			matres[i,j] += self[i,k] * o[k,j]
+          		    end
+                          end
+                        end
+                matres
+            end
+     end
 	
 	# Meodo que calcula el maximo de una matriz dispersa
 	def max
